@@ -1,0 +1,18 @@
+--- #YAML:1.0
+name:                DBIx-Class-Graph
+version:             0.01_01
+abstract:            Represent a graph in a relational database using DBIC
+license:             ~
+author:              
+    - Moritz Onken <onken@houseofdesign.de>
+generated_by:        ExtUtils::MakeMaker version 6.44
+distribution_type:   module
+requires:     
+    Class::Accessor:               0
+    Class::C3:                     0
+    DBIx::Class:                   0.08
+    Graph:                         0.84
+    List::MoreUtils:               0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3
