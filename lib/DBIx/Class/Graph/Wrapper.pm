@@ -1,5 +1,5 @@
 package DBIx::Class::Graph::Wrapper;
-use 5.008008;
+
 use strict;
 use warnings;
 use Class::C3;

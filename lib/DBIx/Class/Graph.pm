@@ -1,10 +1,10 @@
 package DBIx::Class::Graph;
 
-use 5.008008;
+
 use strict;
 use warnings;
 
-our $VERSION = '0.01_01';
+our $VERSION = '0.01_02';
 
 use base qw/DBIx::Class/;
 
