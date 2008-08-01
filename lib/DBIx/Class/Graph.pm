@@ -4,7 +4,7 @@ package DBIx::Class::Graph;
 use strict;
 use warnings;
 
-our $VERSION = '0.01_02';
+our $VERSION = '0.02';
 
 use base qw/DBIx::Class/;
 
@@ -56,7 +56,7 @@ DBIx::Class::Graph - Represent a graph in a relational database using DBIC
 
   __PACKAGE__->connect_graph(predecessor => "parent_id");
 
-  # predecessor can also be a relationship
+  # predecessor must be a column of this row
 
   my $g = $rs->get_graph;
   my @children = $g->successors($rs->get_vertex($id));
@@ -69,7 +69,6 @@ This module allows to create and interact with a directed graph. It will take ca
 It uses L<Graph> for calculations.
 This module extends the DBIx::Class::ResultSet. Some methods are added to the resultset, some to the row objects.
 
-Important: This is a developer release! It works fine for simple layouts (see tests) but does not yet work if you use relationships to address the parents/childs.
 =head1 METHODS
 
 =head2 connect_graph(@opt)
@@ -109,6 +108,7 @@ Simply sort the resultset
 =head2 Integrity
 
 It might be possible that some database actions are not recognized by the graph object and thus do not represent the correct status of the graph. To make sure you are working with the correct graph object reload it after editing the graph.
+If you see such a behaviour please report it to me.
 
 =head2 Multigraph
 
@@ -118,26 +118,17 @@ you should ommit creating multigraphs. Most graph algorithms expect a simple gra
 
 you should consider caching the output of your scripts since retrieving and creating a Graph is not very fast.
 
-=head1 SEE ALSO
-
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-I am also avaiable on the DBIx::Class mailinglist
-
 =head1 TODO
 
 =over
 
-=item *
-Allow mulle oulle
+=item Add support for relationships as connector
 
-=item *
-und so weiter
+This would allow graphs which have multiple parents and multiple children
 
-=back
+=head1 SEE ALSO
+
+L<DBIx::Class::Tree>, L<DBIx::Class::NestedSet>
 
 =head1 BUGS
 
@@ -146,6 +137,8 @@ See L</"CAVEATS">
 =head1 AUTHOR
 
 Moritz Onken, E<lt>onken@houseofdesign.deE<gt>
+
+I am also avaiable on the DBIx::Class mailinglist
 
 =head1 COPYRIGHT AND LICENSE
 

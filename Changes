@@ -1,5 +1,11 @@
 Revision history for Perl extension DBIx::Class::Graph.
 
+0.02  2008-08-01
+  - first release
+  - applied pod fixes
+  - added tests
+  - removed relationship feature
+
 0.01_02 2008-07-27
   - removed perl 5.8.8 dependency
   - added dependency sql-t

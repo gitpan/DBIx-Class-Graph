@@ -1,4 +1,5 @@
-package TestLib::Schema::Complex;
+package 
+  TestLib::Schema::Complex;
 
 use strict;
 use warnings;

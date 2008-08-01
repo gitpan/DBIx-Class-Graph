@@ -18,10 +18,4 @@ t/simple01.t
 t/simple02.t
 t/simplesucc.t
 t/sqlite.db
-test4list/complex01.t
-test4list/sqlite.db
-test4list/TestLib.pm
-test4list/TestLib/Schema.pm
-test4list/TestLib/Schema/Complex.pm
-test4list/TestLib/Schema/ComplexMap.pm
 META.yml                                 Module meta-data (added by MakeMaker)

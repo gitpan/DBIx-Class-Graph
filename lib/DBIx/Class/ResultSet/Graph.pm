@@ -52,9 +52,6 @@ DBIx::Class::ResultSet::Graph
 
 See L<DBIx::Class::Graph>
 
-=head1 AUTHOR
-
-Moritz Onken, E<lt>mo@apple.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

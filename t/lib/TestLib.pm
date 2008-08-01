@@ -1,4 +1,5 @@
-package TestLib;
+package 
+  TestLib;
 use strict;
 use warnings;
 use TestLib::Schema;
