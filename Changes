@@ -1,5 +1,8 @@
 Revision history for Perl extension DBIx::Class::Graph.
 
+0.03  2009-03-07
+  - uses all_successors/all_predecessors from Graph (since 0.85)
+
 0.02  2008-08-01
   - first release
   - applied pod fixes

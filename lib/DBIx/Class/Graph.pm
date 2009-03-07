@@ -4,7 +4,7 @@ package DBIx::Class::Graph;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use base qw/DBIx::Class/;
 
@@ -18,7 +18,7 @@ sub connect_graph {
 	my $rel = shift;
 	my $col = shift;
 	$self->_group_rel($col);
-	my $primary_col = ($self->primary_columns())[0];
+	my $primary_col = ($self->primary_columns())[0] || "";
 	die "invalid parameter" unless(grep {$_ eq $rel} qw(predecessor successor));
 	$self->_connect_by($rel);
 	$self->_group_column($col);
@@ -82,18 +82,6 @@ The name of the relation to the next vertex is defined by the second argument.
 =head2 get_vertex($id)
 
 finds a vertex by searching the underlying resultset for C<$id> in the primary key column (only single primary keys are supported). It's not as smart as the original L<DBIx::Class::ResultSet/find> because it looks on the primary key(s) for C<$id> only.
-
-=head1 ADDITIONAL GRAPH METHODS
-
-L<Graph> lacks some useful methods
-
-=head2 all_successors($v)
-
-Returns all successors of a vertex C<$v>. It's a recusive method. It avoids infinite loops.
-
-=head2 all_predecessors($v)
-
-Returns all predecessors of a vertex C<$v>. It's a recusive method. It avoids infinite loops.
 
 =head1 FAQ
 

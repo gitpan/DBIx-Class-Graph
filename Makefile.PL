@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     NAME              => 'DBIx::Class::Graph',
     VERSION_FROM      => 'lib/DBIx/Class/Graph.pm', # finds $VERSION
-    PREREQ_PM         => {Graph => 0.84,
+    PREREQ_PM         => {Graph => 0.89,
     	List::MoreUtils => 0,
 	Class::C3 => 0,
 	Class::Accessor => 0,
