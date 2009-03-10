@@ -105,6 +105,40 @@ sub get_vertex {
 	
 }
 
+sub all_successors {
+       my $g    = shift;
+       my @root = @_;
+       my @succ;
+       my @return;
+       foreach my $succ (@root) {
+               push( @succ, $g->successors($succ) );
+               @succ = uniq @succ;
+       }
+       foreach my $succ (@succ) {
+               push( @succ, $g->successors($succ) );
+               @succ = uniq @succ;
+       }
+       return @succ;
+}
+
+
+sub all_predecessors {
+       my $g    = shift;
+       my @root = @_;
+       my @pred;
+       my @return;
+       foreach my $pred (@root) {
+               push( @pred, $g->predecessors($pred) );
+               @pred = uniq @pred;
+       }
+       foreach my $pred (@pred) {
+               push( @pred, $g->predecessors($pred) );
+               @pred = uniq @pred;
+       }
+       return @pred;
+}
+
+
 # Preloaded methods go here.
 1;
 

@@ -1,4 +1,4 @@
-use Test::More tests => 11;
+use Test::More tests => 12;
 
 use lib qw(../../lib ../lib t/lib lib);
 
@@ -19,6 +19,8 @@ my $v = $g->get_vertex(1);
 is($v->id, 1);
 
 is(scalar $g->all_successors($v), 2);
+
+ok(($g->all_successors($v))[0]->id);
 
 my $v2 = $g->get_vertex(5);
 

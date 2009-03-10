@@ -1,5 +1,10 @@
 Revision history for Perl extension DBIx::Class::Graph.
 
+0.04 2009-03-10
+  - Bug with all_successors in Graph (see http://rt.cpan.org/Ticket/Display.html?id=43969)
+  - added test for that
+  - reverted to own implementation if all_successors and all_predecessors
+
 0.03  2009-03-07
   - uses all_successors/all_predecessors from Graph (since 0.85)
 

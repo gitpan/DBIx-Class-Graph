@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               DBIx-Class-Graph
-version:            0.03
+version:            0.04
 abstract:           Represent a graph in a relational database using DBIC
 author:
     - Moritz Onken <onken@houseofdesign.de>
