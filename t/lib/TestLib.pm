@@ -1,3 +1,12 @@
+#
+# This file is part of DBIx-Class-Graph
+#
+# This software is Copyright (c) 2010 by Moritz Onken.
+#
+# This is free software, licensed under:
+#
+#   The (three-clause) BSD License
+#
 package 
   TestLib;
 use strict;
@@ -6,13 +15,12 @@ use TestLib::Schema;
 
 sub new {
 	my $self = shift;
-	unlink("t/sqlite.db") if -e "t/sqlite.db";
-	my $schema = TestLib::Schema->connect("dbi:SQLite:t/sqlite.db");
+	my $schema = TestLib::Schema->connect("dbi:SQLite::memory:");
 	$schema->deploy;
 	my $t = $schema->populate(
 		"Simple",
 		[
-			[qw(title parentid id)],
+			[qw(title vaterid id)],
 			[ "root",     0, 1 ],
 			[ "child",    1, 2 ],
 			[ "child",    1, 3 ],
@@ -37,7 +45,7 @@ sub new {
 	$t = $schema->populate(
 		"Complex",
 		[
-			[qw(title id)],
+			[qw(title id_foo)],
 			[ "root",     1 ],
 			[ "root",     2 ],
 			[ "child",    3 ],
@@ -49,14 +57,14 @@ sub new {
 	$t = $schema->populate(
 		"ComplexMap",
 		[
-			[qw(parent child)],
-			[ 0, 1 ],
-			[ 1, 2 ],
-			[ 1, 3 ],
-			[ 1, 4 ],
-			[ 3, 5 ],
-			[ 2, 5 ],
-			[ 3, 6 ]    
+			[qw(parent child id)],
+			[ 0, 1, 1 ],
+			[ 1, 2, 2 ],
+			[ 1, 3, 3 ],
+			[ 1, 4, 4 ],
+			[ 3, 5, 5 ],
+			[ 2, 5, 6 ],
+			[ 3, 6, 7 ]    
 		]
 	);
 	return bless( { schema => $schema }, $self );

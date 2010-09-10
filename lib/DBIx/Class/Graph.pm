@@ -1,65 +1,56 @@
+#
+# This file is part of DBIx-Class-Graph
+#
+# This software is Copyright (c) 2010 by Moritz Onken.
+#
+# This is free software, licensed under:
+#
+#   The (three-clause) BSD License
+#
 package DBIx::Class::Graph;
-
-
-use strict;
-use warnings;
-
-our $VERSION = '0.04';
-
-use base qw/DBIx::Class/;
-
-__PACKAGE__->mk_classdata("_connect_by");
-__PACKAGE__->mk_classdata("_group_rel");
-__PACKAGE__->mk_classdata("_group_column");
-__PACKAGE__->mk_classdata("_has_rel");
-
-sub connect_graph {
-	my $self = shift;
-	my $rel = shift;
-	my $col = shift;
-	$self->_group_rel($col);
-	my $primary_col = ($self->primary_columns())[0] || "";
-	die "invalid parameter" unless(grep {$_ eq $rel} qw(predecessor successor));
-	$self->_connect_by($rel);
-	$self->_group_column($col);
-	if($self->has_column($col)) {
-		$self->belongs_to("_parent" => $self => {"foreign.".$primary_col => "self.".$col}, {join_type => 'left'});
-		$self->_group_rel("_parent");
-	} else {
-		$self->_has_rel(1);
-	}
-	#die "no such column/relation" unless($self->has_relationship($col));
-	$self->resultset_class( 'DBIx::Class::ResultSet::Graph' );
+BEGIN {
+  $DBIx::Class::Graph::VERSION = '1.00';
 }
 
+use Moose;
+extends 'DBIx::Class';
+with 'DBIx::Class::Graph::Role::Result';
 
+__PACKAGE__->mk_classdata("_graph_rel");
+__PACKAGE__->mk_classdata("_graph_foreign_column");
+__PACKAGE__->mk_classdata("_graph_column");
+__PACKAGE__->mk_classdata("_graph");
+__PACKAGE__->mk_classdata("_connect_by");
 
 1;
 
 
+
+=pod
+
 =head1 NAME
 
-DBIx::Class::Graph - Represent a graph in a relational database using DBIC
+DBIx::Class::Graph
+
+=head1 VERSION
+
+version 1.00
 
 =head1 SYNOPSIS
 
   package MySchema::Graph;
   
-  use strict;
-  use warnings;
-  
   use base 'DBIx::Class';
   
   __PACKAGE__->load_components("Graph", "Core");
-  __PACKAGE__->table("client_groups");
+  __PACKAGE__->table("tree");
   __PACKAGE__->add_columns("id", "name", "parent_id");
 
   __PACKAGE__->connect_graph(predecessor => "parent_id");
 
-  # predecessor must be a column of this row
-
-  my $g = $rs->get_graph;
-  my @children = $g->successors($rs->get_vertex($id));
+  my @children = $rs->get_vertex($id)->successors;
+  
+  my @vertices = $rs->vertices;
   
   # do other cool stuff like calculating distances etc.
 
@@ -69,19 +60,52 @@ This module allows to create and interact with a directed graph. It will take ca
 It uses L<Graph> for calculations.
 This module extends the DBIx::Class::ResultSet. Some methods are added to the resultset, some to the row objects.
 
-=head1 METHODS
+=head1 NAME
+
+DBIx::Class::Graph - Represent a graph in a relational database using DBIC
+
+=head1 CONFIGURATION
+
+=head2 load_components
+
+  __PACKAGE__->load_components(qw(Graph Core));
+
+To use this module it has to loaded via C<load_components> in the result class.
+
+=head2 resultset_class
+
+XXX
 
 =head2 connect_graph(@opt)
 
-The first argument is the relation to the next vertex. Possible values: "predecessor" and "successor"
+    __PACKAGE__->connect_graph( predecessor => 'parent_id' );
+    __PACKAGE__->connect_graph( successor   => 'child_id' );
+    __PACKAGE__->connect_graph( predecessor => { parents => 'parent_id' } );
+    __PACKAGE__->connect_graph( successor   => { childs => 'child_id' } );
+
+The first argument defines how the tree is build. You can either specify C<predecessor> or C<successor>.
 
 The name of the relation to the next vertex is defined by the second argument.
 
-=head1 RESULTSET METHODS
+=head1 METHODS
 
-=head2 get_vertex($id)
+=head2 ResultSet methods
+
+=head3 get_vertex($id)
 
 finds a vertex by searching the underlying resultset for C<$id> in the primary key column (only single primary keys are supported). It's not as smart as the original L<DBIx::Class::ResultSet/find> because it looks on the primary key(s) for C<$id> only.
+
+=head2 Result methods
+
+The following methods are imported from L<Graph>:
+
+  delete_vertex connected_component_by_vertex biconnected_component_by_vertex
+  weakly_connected_component_by_vertex strongly_connected_component_by_vertex
+  is_sink_vertex is_source_vertex is_successorless_vertex is_successorful_vertex
+  is_predecessorless_vertex is_predecessorful_vertex is_isolated_vertex is_interior
+  is_exterior is_self_loop_vertex successors neighbours predecessors degree
+  in_degree out_degree edges_at edges_from edges_to get_vertex_count random_successor
+  random_predecessor vertices_at
 
 =head1 FAQ
 
@@ -89,30 +113,17 @@ finds a vertex by searching the underlying resultset for C<$id> in the primary k
 
 Simply sort the resultset
 
-  $rs->search(undef, {order_by => "title ASC"})->get_graph;
+  $rs->search(undef, {order_by => "title ASC"})->graph;
 
 =head1 CAVEATS
 
-=head2 Integrity
-
-It might be possible that some database actions are not recognized by the graph object and thus do not represent the correct status of the graph. To make sure you are working with the correct graph object reload it after editing the graph.
-If you see such a behaviour please report it to me.
-
 =head2 Multigraph
 
-you should ommit creating multigraphs. Most graph algorithms expect a simple graph and may break if they get a multigraph.
+Multipgraphs are not supported. This means you there can only be one edge per vertex pair and direction.
 
 =head2 Speed
 
-you should consider caching the output of your scripts since retrieving and creating a Graph is not very fast.
-
-=head1 TODO
-
-=over
-
-=item Add support for relationships as connector
-
-This would allow graphs which have multiple parents and multiple children
+you should consider caching the L<Graph> object if you are working with large number of vertices.
 
 =head1 SEE ALSO
 
@@ -136,5 +147,20 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.8.8 or,
 at your option, any later version of Perl 5 you may have available.
 
+=head1 AUTHOR
+
+Moritz Onken <onken@netcubed.de>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2010 by Moritz Onken.
+
+This is free software, licensed under:
+
+  The (three-clause) BSD License
 
 =cut
+
+
+__END__
+

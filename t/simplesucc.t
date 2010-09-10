@@ -1,6 +1,6 @@
-use Test::More tests => 12;
+use Test::More;
 
-use lib qw(../../lib ../lib t/lib lib);
+use lib qw(t/lib);
 
 use TestLib;
 
@@ -11,8 +11,6 @@ my $schema = $t->get_schema;
 my $rs = $schema->resultset("SimpleSucc");
 
 my $g = $rs->get_graph;
-
-is(ref $g, "DBIx::Class::Graph::Wrapper");
 
 my $v = $g->get_vertex(1);
 
@@ -44,6 +42,8 @@ $g->delete_vertex($g->get_vertex(3));
 
 is($rs->find(3), undef);
 
-is($rs->find(1)->childid, "");
+is($rs->find(1)->childid, undef);
 
 is(scalar $g->all_successors($v), 0);
+
+done_testing;
