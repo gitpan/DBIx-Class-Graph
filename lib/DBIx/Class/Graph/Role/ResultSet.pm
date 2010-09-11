@@ -9,7 +9,7 @@
 #
 package DBIx::Class::Graph::Role::ResultSet;
 BEGIN {
-  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.00';
+  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.01';
 }
 
 use strict;
@@ -92,7 +92,7 @@ DBIx::Class::Graph::Role::ResultSet
 
 =head1 VERSION
 
-version 1.00
+version 1.01
 
 =head1 AUTHOR
 

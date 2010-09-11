@@ -36,4 +36,5 @@ t/resultset.t
 t/simple01.t
 t/simple02.t
 t/simplesucc.t
+t/sqlite.sql
 t/wrapper.t
