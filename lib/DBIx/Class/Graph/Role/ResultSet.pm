@@ -9,7 +9,7 @@
 #
 package DBIx::Class::Graph::Role::ResultSet;
 BEGIN {
-  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.01';
+  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.02';
 }
 
 use strict;
@@ -53,7 +53,7 @@ sub _build__graph {
         my ( $from, $to ) = ();
         if ( $row->result_source->has_column( $source->_graph_column ) ) {
             next
-              unless ( my $pre = $row->get_column( $source->_graph_column ) );
+              unless ( my $pre = {$row->get_columns}->{ $source->_graph_column } );
             ( $from, $to ) =
               ( $g->get_vertex( $row->$pkey ), $g->get_vertex($pre) );
             next unless $from && $to;
@@ -67,7 +67,7 @@ sub _build__graph {
                 ( $from, $to ) = (
                     $g->get_vertex( $row->$pkey ),
                     $g->get_vertex(
-                        $pre->get_column( $source->_graph_foreign_column )
+                        { $pre->get_columns }->{ $source->_graph_foreign_column }
                     )
                 );
                 next unless $from && $to;
@@ -92,7 +92,7 @@ DBIx::Class::Graph::Role::ResultSet
 
 =head1 VERSION
 
-version 1.01
+version 1.02
 
 =head1 AUTHOR
 

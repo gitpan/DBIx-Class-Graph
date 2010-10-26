@@ -25,7 +25,7 @@ my %module_build_args = (
     'Moritz Onken <onken@netcubed.de>'
   ],
   'dist_name' => 'DBIx-Class-Graph',
-  'dist_version' => '1.01',
+  'dist_version' => '1.02',
   'license' => 'bsd',
   'module_name' => 'DBIx::Class::Graph',
   'recommends' => {},

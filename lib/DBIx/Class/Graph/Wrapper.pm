@@ -9,7 +9,7 @@
 #
 package DBIx::Class::Graph::Wrapper;
 BEGIN {
-  $DBIx::Class::Graph::Wrapper::VERSION = '1.01';
+  $DBIx::Class::Graph::Wrapper::VERSION = '1.02';
 }
 
 use strict;
@@ -185,7 +185,7 @@ DBIx::Class::Graph::Wrapper
 
 =head1 VERSION
 
-version 1.01
+version 1.02
 
 =head1 DESCRIPTION
 
