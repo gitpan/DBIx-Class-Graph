@@ -9,7 +9,7 @@
 #
 package DBIx::Class::Graph::Wrapper;
 BEGIN {
-  $DBIx::Class::Graph::Wrapper::VERSION = '1.02';
+  $DBIx::Class::Graph::Wrapper::VERSION = '1.03';
 }
 
 use strict;
@@ -18,6 +18,7 @@ use Class::C3;
 
 use base qw/Graph/;
 use List::MoreUtils qw(uniq);
+use Scalar::Util qw(refaddr);
 
 # $self is an arrayref!
 
@@ -68,10 +69,10 @@ sub _add_edge {
         }
 
         $from->create_related( $rel, { $column => $to->$pkey } ) unless ($exists);
-
+        
     } else {
         $from->$rel($to);
-        $from->update;
+        $from->update unless($g->[99]);
     }
         
     ( $from, $to ) = ( $to, $from )
@@ -185,7 +186,7 @@ DBIx::Class::Graph::Wrapper
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 DESCRIPTION
 

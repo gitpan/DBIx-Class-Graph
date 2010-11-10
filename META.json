@@ -52,23 +52,23 @@
    "provides" : {
       "DBIx::Class::Graph" : {
          "file" : "lib/DBIx/Class/Graph.pm",
-         "version" : "1.02"
+         "version" : "1.03"
       },
       "DBIx::Class::Graph::Role::Result" : {
          "file" : "lib/DBIx/Class/Graph/Role/Result.pm",
-         "version" : "1.02"
+         "version" : "1.03"
       },
       "DBIx::Class::Graph::Role::ResultSet" : {
          "file" : "lib/DBIx/Class/Graph/Role/ResultSet.pm",
-         "version" : "1.02"
+         "version" : "1.03"
       },
       "DBIx::Class::Graph::Wrapper" : {
          "file" : "lib/DBIx/Class/Graph/Wrapper.pm",
-         "version" : "1.02"
+         "version" : "1.03"
       },
       "DBIx::Class::ResultSet::Graph" : {
          "file" : "lib/DBIx/Class/ResultSet/Graph.pm",
-         "version" : "1.02"
+         "version" : "1.03"
       }
    },
    "release_status" : "stable",
@@ -82,7 +82,7 @@
          "url" : "http://github.com/monken/DBIx-Class-Graph"
       }
    },
-   "version" : "1.02",
+   "version" : "1.03",
    "x_Dist_Zilla" : {
       "plugins" : [
          {

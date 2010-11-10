@@ -9,7 +9,7 @@
 #
 package DBIx::Class::Graph::Role::ResultSet;
 BEGIN {
-  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.02';
+  $DBIx::Class::Graph::Role::ResultSet::VERSION = '1.03';
 }
 
 use strict;
@@ -48,10 +48,12 @@ sub _build__graph {
         weaken($_->{_graph});
         
     }
-
+    
+    $g->[99] = 1;
     foreach my $row (@obj) {
         my ( $from, $to ) = ();
-        if ( $row->result_source->has_column( $source->_graph_column ) ) {
+        my $col = $source->_graph_column;
+        if ( $row->result_source->has_column( $col ) ) {
             next
               unless ( my $pre = {$row->get_columns}->{ $source->_graph_column } );
             ( $from, $to ) =
@@ -79,6 +81,7 @@ sub _build__graph {
         }
 
     }
+    $g->[99] = 0;
     return $g;
 }
 
@@ -92,7 +95,7 @@ DBIx::Class::Graph::Role::ResultSet
 
 =head1 VERSION
 
-version 1.02
+version 1.03
 
 =head1 AUTHOR
 

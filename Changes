@@ -1,5 +1,8 @@
 Revision history for Perl extension DBIx::Class::Graph.
 
+1.03 2010-11-10
+  - Don't call update on DBIC object when constructing Graph
+
 1.02 2010-10-26
   - Compatible with MooseX::DBIC
 
