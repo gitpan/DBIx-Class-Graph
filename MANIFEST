@@ -13,8 +13,7 @@ lib/DBIx/Class/Graph/Role/ResultSet.pm
 lib/DBIx/Class/Graph/Wrapper.pm
 lib/DBIx/Class/ResultSet/Graph.pm
 t/00-compile.t
-t/000-report-versions.t
-t/author-critic.t
+t/000-report-versions-tiny.t
 t/complex.t
 t/leak.t
 t/lib/TestLib.pm
@@ -23,14 +22,11 @@ t/lib/TestLib/Schema/Complex.pm
 t/lib/TestLib/Schema/ComplexMap.pm
 t/lib/TestLib/Schema/Simple.pm
 t/lib/TestLib/Schema/SimpleSucc.pm
-t/release-distmeta.t
 t/release-has-version.t
 t/release-kwalitee.t
 t/release-minimum-version.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
-t/release-portability.t
-t/release-unused-vars.t
 t/result.t
 t/resultset.t
 t/simple01.t

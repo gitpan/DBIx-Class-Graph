@@ -1,11 +1,11 @@
 
 
 This archive contains the distribution DBIx-Class-Graph,
-version 1.03:
+version 1.04:
 
   Represent a graph in a relational database using DBIC
 
-This software is Copyright (c) 2010 by Moritz Onken.
+This software is Copyright (c) 2011 by Moritz Onken.
 
 This is free software, licensed under:
 

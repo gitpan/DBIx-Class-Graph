@@ -1,15 +1,15 @@
 #
 # This file is part of DBIx-Class-Graph
 #
-# This software is Copyright (c) 2010 by Moritz Onken.
+# This software is Copyright (c) 2011 by Moritz Onken.
 #
 # This is free software, licensed under:
 #
 #   The (three-clause) BSD License
 #
 package DBIx::Class::Graph::Role::Result;
-BEGIN {
-  $DBIx::Class::Graph::Role::Result::VERSION = '1.03';
+{
+  $DBIx::Class::Graph::Role::Result::VERSION = '1.04';
 }
 
 use strict;
@@ -83,7 +83,7 @@ DBIx::Class::Graph::Role::Result
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 AUTHOR
 
@@ -91,7 +91,7 @@ Moritz Onken <onken@netcubed.de>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by Moritz Onken.
+This software is Copyright (c) 2011 by Moritz Onken.
 
 This is free software, licensed under:
 

@@ -1,15 +1,15 @@
 #
 # This file is part of DBIx-Class-Graph
 #
-# This software is Copyright (c) 2010 by Moritz Onken.
+# This software is Copyright (c) 2011 by Moritz Onken.
 #
 # This is free software, licensed under:
 #
 #   The (three-clause) BSD License
 #
 package DBIx::Class::ResultSet::Graph;
-BEGIN {
-  $DBIx::Class::ResultSet::Graph::VERSION = '1.03';
+{
+  $DBIx::Class::ResultSet::Graph::VERSION = '1.04';
 }
 
 use Moose;
@@ -34,7 +34,7 @@ DBIx::Class::ResultSet::Graph
 
 =head1 VERSION
 
-version 1.03
+version 1.04
 
 =head1 DESCRIPTION
 
@@ -58,7 +58,7 @@ Moritz Onken <onken@netcubed.de>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2010 by Moritz Onken.
+This software is Copyright (c) 2011 by Moritz Onken.
 
 This is free software, licensed under:
 

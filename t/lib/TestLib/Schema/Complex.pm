@@ -1,7 +1,7 @@
 #
 # This file is part of DBIx-Class-Graph
 #
-# This software is Copyright (c) 2010 by Moritz Onken.
+# This software is Copyright (c) 2011 by Moritz Onken.
 #
 # This is free software, licensed under:
 #
@@ -12,14 +12,14 @@ package    # hide
 
 use base 'DBIx::Class';
 
-__PACKAGE__->load_components qw(Graph Core);
-__PACKAGE__->table qw(complex);
+__PACKAGE__->load_components(qw(Graph Core));
+__PACKAGE__->table(qw(complex));
 __PACKAGE__->add_columns(
     title => { data_type => "character varying", },
     id_foo    => { data_type => "integer", }
 );
 
-__PACKAGE__->set_primary_key qw(id_foo);
+__PACKAGE__->set_primary_key(qw(id_foo));
 
 __PACKAGE__->has_many( parents => 'TestLib::Schema::ComplexMap' => "child" );
 
