@@ -22,7 +22,7 @@ my %module_build_args = (
     "Moritz Onken <onken\@netcubed.de>"
   ],
   "dist_name" => "DBIx-Class-Graph",
-  "dist_version" => "1.04",
+  "dist_version" => "1.05",
   "license" => "bsd",
   "module_name" => "DBIx::Class::Graph",
   "recommends" => {},
@@ -31,7 +31,7 @@ my %module_build_args = (
     "Class::C3" => 0,
     "DBIx::Class" => 0,
     "DBIx::Class::ResultSet" => 0,
-    "Graph" => 0,
+    "Graph" => "0.94",
     "List::MoreUtils" => 0,
     "Moose" => 0,
     "Moose::Role" => 0,

@@ -9,7 +9,7 @@
 #
 package DBIx::Class::ResultSet::Graph;
 {
-  $DBIx::Class::ResultSet::Graph::VERSION = '1.04';
+  $DBIx::Class::ResultSet::Graph::VERSION = '1.05';
 }
 
 use Moose;
@@ -34,7 +34,7 @@ DBIx::Class::ResultSet::Graph
 
 =head1 VERSION
 
-version 1.04
+version 1.05
 
 =head1 DESCRIPTION
 

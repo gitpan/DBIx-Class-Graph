@@ -29,7 +29,7 @@
             "Class::C3" : 0,
             "DBIx::Class" : 0,
             "DBIx::Class::ResultSet" : 0,
-            "Graph" : 0,
+            "Graph" : "0.94",
             "List::MoreUtils" : 0,
             "Moose" : 0,
             "Moose::Role" : 0,
@@ -52,23 +52,23 @@
    "provides" : {
       "DBIx::Class::Graph" : {
          "file" : "lib/DBIx/Class/Graph.pm",
-         "version" : "1.04"
+         "version" : "1.05"
       },
       "DBIx::Class::Graph::Role::Result" : {
          "file" : "lib/DBIx/Class/Graph/Role/Result.pm",
-         "version" : "1.04"
+         "version" : "1.05"
       },
       "DBIx::Class::Graph::Role::ResultSet" : {
          "file" : "lib/DBIx/Class/Graph/Role/ResultSet.pm",
-         "version" : "1.04"
+         "version" : "1.05"
       },
       "DBIx::Class::Graph::Wrapper" : {
          "file" : "lib/DBIx/Class/Graph/Wrapper.pm",
-         "version" : "1.04"
+         "version" : "1.05"
       },
       "DBIx::Class::ResultSet::Graph" : {
          "file" : "lib/DBIx/Class/ResultSet/Graph.pm",
-         "version" : "1.04"
+         "version" : "1.05"
       }
    },
    "release_status" : "stable",
@@ -84,7 +84,7 @@
          "web" : "http://github.com/monken/DBIx-Class-Graph"
       }
    },
-   "version" : "1.04",
+   "version" : "1.05",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
@@ -275,6 +275,17 @@
          {
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
             "name" : "@Filter/UploadToCPAN",
+            "version" : "4.300003"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "runtime",
+                  "type" : "requires"
+               }
+            },
+            "name" : "Prereqs",
             "version" : "4.300003"
          },
          {
